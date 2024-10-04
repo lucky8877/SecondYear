@@ -1,32 +1,74 @@
+#include <iostream>
 
-template<typename T>
-class ArrayHandler {
-private:
-    size_t _size;
-    T* _array;
-public:
-    ArrayHandler(size_t size = 10) {
+using namespace std;
 
-    }
+template <typename T>
+class ArrayHandler
+{
 
-    void AppendElem(T elem) {
+    private:
+        size_t size;
+        size_t capacity;
+        T* arr;
+        T mx;
+        T mn;
+    public:
 
-    }
+        ArrayHandler() {
+            size = 0;
+            capacity = 0;
+            arr = new T[capacity];
+        };
 
-    bool IsContains(T elem) {
-        return false;
-    }
+        void AppendElem(T elem) {
+            if (size == capacity) {
+                capacity = (capacity == 0) ? 1: capacity * 2;
+                T* newarr = new T[capacity];
+                for (size_t i = 0; i < size; i++) {
+                    newarr[i] = arr[i];
+                };
+                delete []arr;
+                arr = newarr;
+            };
+            if (size == 0) {
+                mx = elem;
+                mn = elem;
+            }else {
+                if (elem > mx) {
+                    mx = elem;
+                }
+                if (elem < mn) {
+                    mn = elem;
+                }
+            }
+            arr[size] = elem;
+            size++;                
+        };
+        
+        T GetMax() {
+        return mx;
+        }
 
-    T GetMax() {
-        return 0;
-    }
+        T GetMin() {
+        return mn;
+        }
+        
+        bool IsContains(T elem) {
+            for (size_t i = 0; i < size; i++) {
+                if (arr[i] == elem)
+                    return 1;
+            };
+            return 0;
+        };
+                
+        T &operator[] (int i) {
+            return arr[i];
+        };
 
-    T GetMin() {
-        return 0;
-    }
-
-    ~ArrayHandler() {
-
-    }
-
+        ~ArrayHandler(){
+            size = 0;
+            capacity = 0;
+            delete []arr;
+        };
+        
 };
