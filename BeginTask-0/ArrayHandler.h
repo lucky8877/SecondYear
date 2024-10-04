@@ -7,18 +7,18 @@ class ArrayHandler
 {
 
     private:
-        size_t size;
-        size_t capacity;
-        T* arr;
+        size_t size = 0;
+        size_t capacity = 101;
+        T* arr = new T[capacity];
         T mx;
         T mn;
     public:
 
-        ArrayHandler() {
-            size = 0;
-            capacity = 101;
-            arr = new T[capacity];
-        };
+        // ArrayHandler() {
+        //     size = 0;
+        //     capacity = 101;
+        //     arr = new T[capacity];
+        // };
 
         void AppendElem(T elem) {
             if (size == capacity) {
