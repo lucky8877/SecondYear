@@ -16,7 +16,7 @@ class ArrayHandler
 
         ArrayHandler() {
             size = 0;
-            capacity = 0;
+            capacity = 512;
             arr = new T[capacity];
         };
 
