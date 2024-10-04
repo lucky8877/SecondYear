@@ -22,7 +22,7 @@ class ArrayHandler
 
         void AppendElem(T elem) {
             if (size == capacity) {
-                capacity = (capacity == 0) ? 1: capacity * 2;
+                capacity = (capacity == 0) ? 1: capacity * 128;
                 T* newarr = new T[capacity];
                 for (size_t i = 0; i < size; i++) {
                     newarr[i] = arr[i];
@@ -52,7 +52,7 @@ class ArrayHandler
         T GetMin() {
         return mn;
         }
-        
+
         bool IsContains(T elem) {
             for (size_t i = 0; i < size; i++) {
                 if (arr[i] == elem)
