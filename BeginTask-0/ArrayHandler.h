@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <cstdint>
+#include <cstring>
 using namespace std;
 
 template <typename T>
@@ -17,6 +18,8 @@ class ArrayHandler
         ArrayHandler() {
             size = 0;
             capacity = 0;
+            mx = std::numeric_limits<T>::min();
+            mn = std::numeric_limits<T>::max();
             arr = new T[capacity];
         };
 
@@ -24,23 +27,19 @@ class ArrayHandler
             if (size == capacity) {
                 capacity = (capacity == 0) ? 1: capacity * 128;
                 T* newarr = new T[capacity];
-                for (size_t i = 0; i < size; i++) {
-                    newarr[i] = arr[i];
-                };
+                std::memcpy(newarr, arr, size * sizeof(T));
                 delete []arr;
                 arr = newarr;
-            };
-            if (size == 0) {
-                mx = elem;
-                mn = elem;
-            }else {
-                if (elem > mx) {
-                    mx = elem;
-                }
-                if (elem < mn) {
-                    mn = elem;
-                }
             }
+
+
+            if (elem > mx) {
+                mx = elem;
+            }
+            if (elem < mn) {
+                mn = elem;
+            }
+
             arr[size] = elem;
             size++;                
         };
@@ -68,7 +67,7 @@ class ArrayHandler
         ~ArrayHandler(){
             size = 0;
             capacity = 0;
-            delete []arr;
+            delete []arr;   
         };
         
 };
