@@ -5,14 +5,14 @@ public:
 
     }
     inline T GetMax() const{
-        if (sizeof(T) == sizeof(uint8_t) ) {
+        if (sizeof(T) == 1) {
             return 10;
         } else {
             return 1000000010;
         }
     }
     inline T GetMin()  const{
-            if (sizeof(T) == sizeof(uint8_t)) {
+            if (sizeof(T) == 1) {
             return 1;
         } else {
             return 0;
