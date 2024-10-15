@@ -1,20 +1,18 @@
-#include <type_traits>
-
 template<typename T>
 class ArrayHandler {
 public:
-    void AppendElem(T elem) {
+    inline void AppendElem(T elem) const {
 
     }
     inline T GetMax() const{
-        if (std::is_same<T,uint8_t>::value) {
+        if (sizeof(T) == sizeof(uint8_t) ) {
             return 10;
         } else {
             return 1000000010;
         }
     }
     inline T GetMin()  const{
-            if (std::is_same<T,uint8_t>::value) {
+            if (sizeof(T) == sizeof(uint8_t)) {
             return 1;
         } else {
             return 0;
