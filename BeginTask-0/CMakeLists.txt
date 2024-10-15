@@ -12,6 +12,7 @@ target_compile_options(main PRIVATE
   -fno-exceptions  
   -fno-rtti   
   -fomit-frame-pointer
+  -w
 )
 
 target_link_libraries(main gtest gmock pthread) 
