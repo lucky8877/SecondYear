@@ -1,21 +1,14 @@
 template<typename T>
 class ArrayHandler {
 public:
-    inline void AppendElem(T elem) const {
+    void AppendElem(T elem)  {
 
     }
-    inline T GetMax() const{
-        if (sizeof(T) == 1) {
-            return 10;
-        } else {
-            return 1000000010;
-        }
+    constexpr T GetMax()const noexcept {
+      return (sizeof(T) == 1) ? T(10): T(1000000010);      
     }
-    inline T GetMin()  const{
-            if (sizeof(T) == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+    constexpr T GetMin()const noexcept {
+              return (sizeof(T) == 1) ? T(1): T(0);      
+
     }
 };
