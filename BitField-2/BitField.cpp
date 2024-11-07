@@ -94,7 +94,7 @@ bool BitField::operator==(const BitField& tmp) const{
 }
 
 BitField BitField::operator~(){
-     BitField tmp = BitField(*this);
+     BitField tmp(*this);
     for (size_t i=0; i<_sizeBit; i++){
         if (GetBit(i))
             tmp.ClrBit(i);
