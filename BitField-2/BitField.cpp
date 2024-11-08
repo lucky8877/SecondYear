@@ -60,7 +60,11 @@ size_t BitField::GetLength() const {
 }
 
 void BitField::SetBit(size_t n) {
+    if (n <= _sizeBit) {
     _mem[GetMemIndex(n)] |= GetMask(n);
+    } else {
+        throw "SetBit error";
+    }
 }
 
 void BitField::ClrBit(size_t n) {
