@@ -28,6 +28,9 @@ public:
     BitField operator~();
 
     ~BitField(){
-
+        // delete [] _mem;
+        // _mem = nullptr;
+        // _memSize = 0;
+        // _sizeBit = 0;
     }
 };
