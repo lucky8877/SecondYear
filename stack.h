@@ -10,34 +10,32 @@ class Stack {
         bool _isEmpty = true;
 
         void Expand() {
-            T* arr;
-            T* arr = new [_size * 2];
-            for (size_t i = 0; i <=size; i++) {
+            T *arr;
+            arr = new T[_size * 2];
+            for (size_t i = 0; i <=_size; i++) {
                 arr[i] = _array[i];
             }
         delete [] _array;
-        __array = arr;
+        _array = arr;
         }
 
     bool IsFull(){
-        return (top == size - 1) && _isEmpty; 
+        return (_top == _size - 1) && _isEmpty; 
     }
 
     void Reduce() {
-        if (top > _size * 2 || _top < 100) {
-            return
+        if (_top > _size * 2 || _top < 100) {
+            return;
         }
 
         T* arr;
-        T* arr = new [_size / 2];
-        for (size_t i = 0; i <=top + 1; i++) {
+        T* arr = new T[_size / 2];
+        for (size_t i = 0; i <=_top + 1; i++) {
             arr[i] = _array[i];
         }
         delete [] _array;
-        __array = arr;
+        _array = arr;
     }
-
-
 
     public:
         Stack(size_t size = 10) {
@@ -50,7 +48,7 @@ class Stack {
             if (_isEmpty) {
                 _isEmpty = false;
             }else {
-                top++;
+                _top++;
             }
             
             if (IsFull()) Expand();
@@ -65,9 +63,9 @@ class Stack {
             if (!_top) 
                 _isEmpty = true;
             else 
-                top--;
+                _top--;
             
-            return _array[top + 1];
+            return _array[_top + 1];
         }
 
         T Check(T *elem) const {
@@ -79,8 +77,12 @@ class Stack {
             return _array;
         }
 
-        std::ostream& operator<<(std::ostream& out, const Stack& st) {
-        
+        size_t GetTop() {
+            return _top;
+        }
+
+        std::ostream& Stack<T> operator<<(std::ostream& out, const Stack<T>& st) {
+            return out;
         }
 };
 
