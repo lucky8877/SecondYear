@@ -60,5 +60,34 @@ Set Set::operator~ (){
     return Set(~_bitField);
 }
 std::vector<uint64_t> Set::GetPrimary(){
-    return std::vector<uint64_t>();
+    // return std::vector<uint64_t>();
+    std::vector<uint64_t>finalVec;
+    std::vector<bool>boolVec;
+
+    for (size_t i = 0; i < _maxPower+1; i++) {
+        boolVec.push_back(true);
+    }
+
+    boolVec[0] = false;
+    boolVec[1] = false;
+
+    for (size_t i = 2; i < _maxPower+1; i++) {
+        if (boolVec[i] == true) {
+        int j = i;
+        while (j + i <= _maxPower) {
+            j += i;
+            boolVec[j] = false;
+            }
+        }
+    }
+
+    finalVec.push_back(1);
+    for (int i = 0; i < _maxPower+1; i++) {
+        if (boolVec[i] != false) {
+            std::cout<<i<<"\n";
+            finalVec.push_back(i);
+        }
+    }
+
+    return finalVec;
 }
