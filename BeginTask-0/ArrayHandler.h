@@ -9,6 +9,5 @@ public:
     }
     constexpr T GetMin()const noexcept {
               return (sizeof(T) == 1) ? T(1): T(0);      
-
     }
 };
