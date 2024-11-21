@@ -26,7 +26,9 @@ public:
     BitField operator^(const BitField& tmp);
     bool operator==(const BitField& tmp) const;
     BitField operator~();
-
+    BitField operator<<(size_t n);
+    BitField operator>>(size_t n);
+    
     ~BitField(){
         // delete [] _mem;
         // _mem = nullptr;
