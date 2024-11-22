@@ -123,3 +123,47 @@ BitField BitField::operator~(){
     }
     return tmp;
 }
+
+BitField BitField::operator<<(size_t n) {
+    size_t size = _sizeBit + n;
+    BitField tmp(size);
+    for (size_t i = 0; i < _sizeBit; i++) {
+        if (GetBit(i) == 1) {
+            tmp.SetBit(i);
+        }
+    } 
+    //     for (size_t i = 0; i < _sizeBit; i++) {
+    //         std::cout<<+GetBit(i)<<"";
+
+    // }
+    // std::cout<<"\n";
+    // for (size_t i = 0; i < tmp._sizeBit; i++) {
+    //         std::cout<<+tmp.GetBit(i)<<"";
+
+    // }
+    // std::cout<<"\n";
+    return tmp;
+}
+
+BitField BitField::operator>>(size_t n) {
+    size_t size = _sizeBit - n;
+    BitField tmp(size);
+    for (size_t i = 0; i < tmp._sizeBit; i++) {
+        if (GetBit(i) == 1) {
+            tmp.SetBit(i);
+        }
+    }
+
+    // for (size_t i = 0; i < _sizeBit; i++) {
+    //     std::cout<<+GetBit(i)<<"";
+
+    // }
+    // std::cout<<"\n";
+    // for (size_t i = 0; i < tmp._sizeBit; i++) {
+    //         std::cout<<+tmp.GetBit(i)<<"";
+
+    // }
+
+    // std::cout<<"\n";
+    return tmp;
+}
