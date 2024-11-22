@@ -55,7 +55,7 @@ class Stack {
             _array[_top] = elem;
         }
 
-        T Pop(T elem) {
+        T Pop() {
             if (_isEmpty) 
                 throw "stack is empty";
 
@@ -71,7 +71,7 @@ class Stack {
             if (_isEmpty) throw "stack is empty";
             return _array[_top];
         }
-
+ 
         T* GetArray() {
             return _array;
         }
@@ -79,5 +79,9 @@ class Stack {
         size_t GetTop() {
             return _top;
         }
+
+        bool IsEmpty() {
+            return _isEmpty;
+        };
 };
 
