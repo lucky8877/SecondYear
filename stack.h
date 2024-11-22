@@ -28,7 +28,6 @@ class Stack {
             return;
         }
 
-        T* arr;
         T* arr = new T[_size / 2];
         for (size_t i = 0; i <=_top + 1; i++) {
             arr[i] = _array[i];
@@ -79,10 +78,6 @@ class Stack {
 
         size_t GetTop() {
             return _top;
-        }
-
-        std::ostream& Stack<T> operator<<(std::ostream& out, const Stack<T>& st) {
-            return out;
         }
 };
 
