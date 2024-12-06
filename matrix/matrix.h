@@ -1,24 +1,20 @@
 #pragma once
-#include "Vector.h"
-
+#include "vector.h"
+// операция возведения в степень для матрицы
+using namespace std;
 template <class T>
-class Matrix: public Vector<Vector<T>>
-{
-private:
-    int _deg = 1;
+class Matrix: public Vector<Vector<T>>{
 public:
     Matrix(size_t n): Vector<Vector<T>>(n, 0)
     {
         for(size_t i = 0; i<n; i++){
-            _array[i] = Vector<T>(n-i,i);
-        } 
+            this->_array[i] = Vector<T>(n-i,i);
+        }
     }
-    
-    Matrix(const Matrix& mt):Vector<Vector<T>>(mt) {}
 
-    Matrix(const Vector<Vector<T>>& vv):Vector<Vector<T>>(vv) {}
-
-    
+    size_t GetSize() const {
+        return  Vector<Vector<T>>::GetSize();
+    }
     Matrix& operator=(const Matrix& mt){
         return Vector<Vector<T>>::operator=(mt);
     }
@@ -35,46 +31,27 @@ public:
         return Vector<Vector<T>>::operator/(elem);
     }
 
-
-    void PowTo_1(){
-        _deg = -1;
-        T det;
-        
-        for(int i = 0; i < this->_size; i++)  det *= this->_array[i].GetElem(0);
-
-        Vector<T> tmp_vec;
-
-        for (int i = 0; i < (this->_size)/2; i++ ){
-            tmp_vec = this->_array[i];
-            this->_array[i] = this->_array[(this->_size) - i - 1];
-            this->_array[(this->_size) - i - 1] = tmp_vec;
-        }
-
-        this->operator/(det);
-    }
-
-
     Matrix operator*(const Matrix& mt) {
-        if (this->_size != mt._size) {
-            throw invalid_argument("Matrices have incompatible sizes for multiplication.");
-        }
-
-        Matrix result(this->_size);
-
-        for (size_t i = 0; i < this->_size; i++) { 
-            for (size_t j = i; j < this->_size; j++) { 
-                T sum = 0;
-
-                for (size_t k = i; k <= j; k++) {
-                    if ((k - i) < this->_array[i].GetSize() && (j - k) < mt._array[k].GetSize()) {
-                        sum += this->_array[i][k - i] * mt._array[k][j - k];
-                    }
+        Matrix res(this->_size);
+        for (size_t i = 0; i < this->_size; i++) {
+            for (size_t j = i; j < this->_size; j++) {
+                res._array[i][j] = 0;
+                for (size_t k = 0; k < this->_size; k++) {
+                    res._array[i][j] += this->_array[i][j] + mt._array[i][j];
                 }
-
-                result._array[i][j - i] = sum; 
             }
         }
+        return res;
+    }
 
-        return result;
+    friend ostream& operator<<(ostream& os, const Matrix& mt){
+        for (int i = 0; i < this->._size; i++){
+            os << 1<<endl;
+        // os << "|";
+        //     for (size_t j = 0; j < i; j++) 
+        //         os << "0, ";
+        // os << mt._array[i] << "|" << endl;
+        }
+        return os;
     }
 };

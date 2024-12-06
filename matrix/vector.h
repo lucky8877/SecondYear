@@ -2,10 +2,16 @@
 template <class T>
 class Vector {
 private:
-    T* _array;
     size_t _size;
     size_t _startIndex;
 public:
+    T* _array;
+
+    Vector() {
+        _size = 0;
+        _startIndex = 0;
+        _array = new T[_size];
+    }
     Vector(size_t t, size_t startIndex = 0) {
         _size = t;
         _startIndex = startIndex;
@@ -25,10 +31,6 @@ public:
         }
     }
 
-    Vector(Vector&& tmp) {
-
-    }
-
     T& operator[](size_t i) {
         return _array[i];
     }
@@ -41,6 +43,9 @@ public:
         return _array[i];
     }
 
+    size_t GetSize() const{
+        return _size;
+    }
     Vector& operator=(const Vector& tmp) {
         _size = tmp._size;
         _startIndex = tmp._startIndex;
