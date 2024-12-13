@@ -22,8 +22,6 @@ public:
         _size = tmp._size;
         _startIndex = tmp._startIndex;
 
-        delete []_array;
-
         _array = new T[_size];
 
         for (int i = 0; i < _size; i++) {
@@ -89,5 +87,11 @@ public:
         return ans;
     }
 
-
+    friend std::ostream& operator<<(std::ostream& os, const Vector& vec){
+        for (size_t j = 0; j < vec.GetSize(); j++) {
+            os << vec._array[j]<<" ";
+        }
+        os << std::endl;
+        return os;
+    }
 };

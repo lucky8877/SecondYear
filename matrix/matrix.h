@@ -8,7 +8,7 @@ public:
     Matrix(size_t n): Vector<Vector<T>>(n, 0)
     {
         for(size_t i = 0; i<n; i++){
-            this->_array[i] = Vector<T>(n-i,i);
+            this->_array[i] = Vector<T>(n);
         }
     }
 
@@ -30,27 +30,42 @@ public:
     Matrix operator/(const T& elem){
         return Vector<Vector<T>>::operator/(elem);
     }
+    
+    Vector<T>& operator[](size_t i) {
+        return this->_array[i];
+    }
 
+   
     Matrix operator*(const Matrix& mt) {
-        Matrix res(this->_size);
-        for (size_t i = 0; i < this->_size; i++) {
-            for (size_t j = i; j < this->_size; j++) {
+        Matrix res(mt.GetSize());
+        for (size_t i = 0; i < mt.GetSize(); i++) {
+            for (size_t j = 0; j < mt.GetSize(); j++) {
                 res._array[i][j] = 0;
-                for (size_t k = 0; k < this->_size; k++) {
-                    res._array[i][j] += this->_array[i][j] + mt._array[i][j];
+                for (size_t k = 0; k < mt.GetSize(); k++) {
+                    res._array[i][j] += this->_array[i][k] * mt._array[k][j];
                 }
             }
         }
         return res;
     }
 
-    friend ostream& operator<<(ostream& os, const Matrix& mt){
-        for (int i = 0; i < this->._size; i++){
-            os << 1<<endl;
-        // os << "|";
-        //     for (size_t j = 0; j < i; j++) 
-        //         os << "0, ";
-        // os << mt._array[i] << "|" << endl;
+    
+    void Pow(size_t degree) {
+        Matrix res = *this;
+        cout<<res*res*res;
+        Matrix fin(res.GetSize());
+        for (int i = 0; i < degree; i++) {
+            res = &(res * res);
+            cout<<res;
+        }
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& mt){
+        for (size_t i = 0; i < mt.GetSize(); i++){
+            for (size_t j = 0; j < mt.GetSize(); j++) {
+                os << mt._array[i][j]<<" ";
+            }
+            os << std::endl;
         }
         return os;
     }
