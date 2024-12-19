@@ -12,7 +12,7 @@ int main() {
     m[2][0] = 0;
     m[2][1] = 0;
     m[2][2] = 7;
-    cout<<m;
-    cout<<m.Pow(3);
+    cout<<m<<"\n";
+    cout<<m.Pow(10);
 
 }
