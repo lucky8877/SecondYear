@@ -15,8 +15,14 @@ public:
     size_t GetSize() const {
         return  Vector<Vector<T>>::GetSize();
     }
-    Matrix& operator=(const Matrix& mt){
-        return Vector<Vector<T>>::operator=(mt);
+
+    Matrix& operator=(const Matrix& mt) {
+        if (this != &mt) {
+             for(size_t i = 0; i<GetSize(); i++){
+            this->_array[i] = mt._array[i];
+        }
+        }
+        return *this;
     }
 
     Matrix operator+(const Matrix& mt){
@@ -41,7 +47,7 @@ public:
         for (size_t i = 0; i < mt.GetSize(); i++) {
             for (size_t j = 0; j < mt.GetSize(); j++) {
                 res._array[i][j] = 0;
-                for (size_t k = 0; k < mt.GetSize(); k++) {
+                for (size_t k = i; k < mt.GetSize(); k++) {
                     res._array[i][j] += this->_array[i][k] * mt._array[k][j];
                 }
             }
@@ -49,17 +55,25 @@ public:
         return res;
     }
 
-    
-    void Pow(size_t degree) {
-        Matrix res = *this;
-        cout<<res*res*res;
-        Matrix fin(res.GetSize());
-        for (int i = 0; i < degree; i++) {
-            res = &(res * res);
-            cout<<res;
-        }
-    }
 
+     Matrix Pow(size_t n) const {
+        if (n == 0) {
+            Matrix identity(this->GetSize());
+            for (size_t i = 0; i < this->GetSize(); i++) {
+                identity[i][i] = 1;
+            }
+            return identity;
+        }
+
+        Matrix result = *this; 
+        Matrix base = *this;   
+
+        for (size_t i = 1; i < n; i++) {
+            result = result * base;
+        }
+
+        return result;
+    }
     friend std::ostream& operator<<(std::ostream& os, const Matrix& mt){
         for (size_t i = 0; i < mt.GetSize(); i++){
             for (size_t j = 0; j < mt.GetSize(); j++) {

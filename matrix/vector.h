@@ -86,7 +86,7 @@ public:
         }
         return ans;
     }
-
+    
     friend std::ostream& operator<<(std::ostream& os, const Vector& vec){
         for (size_t j = 0; j < vec.GetSize(); j++) {
             os << vec._array[j]<<" ";
