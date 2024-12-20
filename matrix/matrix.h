@@ -18,7 +18,7 @@ public:
 
     Matrix& operator=(const Matrix& mt) {
         if (this != &mt) {
-             for(size_t i = 0; i<GetSize(); i++){
+            for(size_t i = 0; i<GetSize(); i++){
             this->_array[i] = mt._array[i];
         }
         }
@@ -41,7 +41,6 @@ public:
         return this->_array[i];
     }
 
-   
     Matrix operator*(const Matrix& mt) {
         Matrix res(mt.GetSize());
         for (size_t i = 0; i < mt.GetSize(); i++) {
@@ -54,7 +53,6 @@ public:
         }
         return res;
     }
-
 
      Matrix Pow(size_t n) const {
         if (n == 0) {
@@ -74,6 +72,7 @@ public:
 
         return result;
     }
+
     friend std::ostream& operator<<(std::ostream& os, const Matrix& mt){
         for (size_t i = 0; i < mt.GetSize(); i++){
             for (size_t j = 0; j < mt.GetSize(); j++) {
