@@ -7,16 +7,16 @@ using namespace std;
 template<typename T1, typename T2>
 class Table{
 private:
-    string _title_col1;
-    string _title_col2;
+    string _titleCol1;
+    string _titleCol2;
     size_t _table_size;
     optional<T1>* _col1;
     optional<T2>* _col2;
     size_t _count;
 public:
     Table(string s1, string s2,size_t size){
-        _title_col1=s1;
-        _title_col2=s2;
+        _titleCol1=s1;
+        _titleCol2=s2;
         _table_size=size;
         _col1=new optional<T1>[_table_size];
         _col2=new optional<T2>[_table_size];
@@ -39,7 +39,7 @@ public:
     }
 
     void Print(){
-        cout <<"|"<<setw(5)<< this->_title_col1<<" | "<<setw(5)<<this->_title_col2<<"|"<<endl;
+        cout <<"|"<<setw(5)<< this->_titleCol1<<" | "<<setw(5)<<this->_titleCol2<<"|"<<endl;
         for (size_t i=0;i<15;i++){
             cout<<"-";
         }

@@ -1,7 +1,8 @@
 #include "Stack.h"
-
+#include "Table.h"
+#include "ExpressionChecker.h"
 int main(){
     Stack<int> s(10);
-    cout << s.Pop();
+    ExpressionChecker Ex();
     return 1;
 }

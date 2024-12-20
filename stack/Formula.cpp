@@ -33,14 +33,12 @@ void Formula::FormulaConverter(size_t num_of_un){
         }
 
         else if (isalpha(_expr[i])){
-            //проверка соседних символов
             _set.insert(_expr[i]);
             _postfix += _expr[i];
         }
 
         else {
-            if (i == _expr.size() - 1 || !isalnum(_expr[i+1])) throw "wrong syntax";//сделать проверку в экспчекере
-
+            if (i == _expr.size() - 1 || !isalnum(_expr[i+1])) throw "wrong syntax";
             while (!_opStack.isEmpty() && _prior.GetElemFromCol2(_opStack.Top()) >= _prior.GetElemFromCol2(_expr[i])) {
                 _postfix += _opStack.Pop();
             }
@@ -55,7 +53,7 @@ void Formula::FormulaConverter(size_t num_of_un){
     if(_num_of_un != 0)
         for(char ch : _set){
             double tmp;
-            cout << "Введите значение для переменной" << ch << ":";
+            cout << "Введите значение переменной" << ch << ":";
             cin >> tmp;
             _unknow.AppendRow(ch, tmp);
             cout << endl;
@@ -72,28 +70,17 @@ double Formula::FormulaCalculator(){
         }
 
         else {
-            if (_postfix[i] == '+') {
-                first = stack.Pop();
-                sec = stack.Pop();
-                stack.Push(first + sec);
-            }
-
-            else if (_postfix[i] == '*') {
-                first = stack.Pop();
-                sec = stack.Pop();
-                stack.Push(first * sec);
-            }
-            
-            else if (_postfix[i] == '-') {
-                first = stack.Pop();
-                sec = stack.Pop();
-                stack.Push(sec - first);
-            }
-
-            else if (_postfix[i] == '/') {
-                first = stack.Pop();
-                sec = stack.Pop();
-                stack.Push(sec / first);
+            first = stack.Pop();
+            sec = stack.Pop();
+            switch (_postfix[i]){
+                case '+':
+                    stack.Push(sec + first);
+                case '*':
+                    stack.Push(sec * first);
+                case '-':
+                    stack.Push(sec - first);
+                case '/':
+                    stack.Push(sec / first);
             }
         }
     }
