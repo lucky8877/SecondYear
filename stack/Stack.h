@@ -28,28 +28,28 @@ private:
 
 public:
 
-    Stack (size_t size) {
+    Stack(size_t size) {
         _size = size;
         _top = 0;
         _array = new T[size];
     }
 
-    Stack (){
+    Stack(){
         _size = 10;
         _top = 0;
         _array = new T[_size];
     }
 
-    ~Stack (){
+    ~Stack(){
         delete [] _array;
         _array = nullptr;
     }
 
-    inline bool isEmpty() const{
+    bool isEmpty() const{
         return _isEmpty;
     }
 
-    inline bool isFull() const{
+    bool isFull() const{
         return (_top == _size - 1 && !_isEmpty);
     }
     
@@ -61,7 +61,7 @@ public:
     }
 
     const T Pop(){
-        if (_isEmpty) throw "bebrachka";
+        if (_isEmpty) throw "stack is empty";
         if (_top == 0) {
             _isEmpty = true;
             return _array[_top];
@@ -71,11 +71,11 @@ public:
     }
     
     const T Top() const{
-        if (_isEmpty) throw "bebrachka";
+        if (_isEmpty) throw "stack is empty";
         return _array[_top];
     }
 
-    void Revers(){
+    void Reverse(){
         T* arr;
         arr = new T[_size];
         for (int i = 0; i < _top; i++){

@@ -9,7 +9,7 @@ bool IsDig(char dig){
 
 
 
-bool ExpressionChecker::CheckBrackets (const string& s){
+bool ExpressionChecker::CheckBrackets(const string& s){
     Stack<int> bracketStack;
     
     for (size_t i = 0; i < bracketStack.GetSize(); i++){
@@ -31,7 +31,7 @@ bool ExpressionChecker::CheckBrackets (const string& s){
         _bracketTab.AppendRow(bracketStack.Pop(), nullopt);
     }
 
-    _misBrac.Revers();
+    _misBrac.Reverse();
     return bracketStack.isEmpty();
 }
 
