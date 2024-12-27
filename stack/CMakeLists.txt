@@ -1,7 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.2)
 
-project(Stack
-        LANGUAGES CXX)
-
-
-add_executable(stack main.cpp Formula.cpp ExpressionChecker.cpp)
+project(stack)
+add_executable(main main.cpp)

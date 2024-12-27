@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "CMake: CMake Script",
+            "type": "cmake",
+            "request": "launch",
+            "cmakeDebugType": "script",
+            "scriptPath": "/home/s23380344@unn.global/SecondYear/matrix/CMakeLists.txt"
+        }
+    ]
+}

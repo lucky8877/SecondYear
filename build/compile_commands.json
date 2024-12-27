@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/s23380344@unn.global/SecondYear/build",
+  "command": "/usr/bin/g++-12   -g -o CMakeFiles/main.dir/main.cpp.o -c /home/s23380344@unn.global/SecondYear/matrix/main.cpp",
+  "file": "/home/s23380344@unn.global/SecondYear/matrix/main.cpp"
+}
+]
