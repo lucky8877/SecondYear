@@ -14,7 +14,7 @@ public:
     size_t GetSize()const;
     double GetCoef()const;
     void SetCoef(double coef);
-    void print() const;    
+    void Print() const;    
     bool CanOperate(const Monom& monom) const;
 
     Monom& operator=(const Monom& monom);

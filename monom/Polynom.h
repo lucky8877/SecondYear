@@ -19,6 +19,7 @@ public:
     Polynom operator/(const Polynom& polynom) const;
     Polynom operator*(const Monom& mon) const;
     Polynom& operator=(const Polynom& polynom);
+    Polynom operator/(const Monom& mon) const;
 
     Monom getLeadingMonom() const ;
     static bool compareMonoms(const Monom& a, const Monom& b);

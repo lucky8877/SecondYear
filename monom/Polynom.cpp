@@ -83,7 +83,7 @@ void Polynom::Print() {
     while (tmp != nullptr) {
         if (tmp == _head ){
             if(tmp->GetMonom().GetCoef()!=0){
-                tmp->GetMonom().print();
+                tmp->GetMonom().Print();
                 pr_flag++;
             }
         }
@@ -94,7 +94,7 @@ void Polynom::Print() {
             }
             if (tmp->GetMonom().GetCoef() !=0){
                 std::cout<<" ";
-                tmp->GetMonom().print();
+                tmp->GetMonom().Print();
             }
         }
         tmp = tmp->Next;
@@ -203,12 +203,12 @@ Monom Polynom::getLeadingMonom() const {
 
 Polynom Polynom::operator/(const Polynom& divisor) const {
     if(divisor._head == nullptr){
-        throw "-";
+        throw "head is nullptr";
     }
     Polynom dividend(*this);
     Polynom res;
     if(!compareMonoms(dividend.getLeadingMonom(),(divisor.getLeadingMonom())))
-        throw "-";
+        throw "leadingMonom not found";
     while(compareMonoms(dividend.getLeadingMonom(),(divisor.getLeadingMonom()))){
         Monom monom1 = dividend.getLeadingMonom();
         Monom monom2 = divisor.getLeadingMonom();
@@ -223,5 +223,22 @@ Polynom Polynom::operator/(const Polynom& divisor) const {
     std::cout << "остаток:";
     dividend.Print();
     return result;
+}
 
+Polynom Polynom::operator/(const Monom& mon) const {
+    Polynom tmpPolynom;
+    Polynom res(*this);
+    tmpPolynom.AppendMonom(mon);
+
+    int16_t *arr;
+    for (size_t i = 0; i < mon.GetSize()-1; i++) {
+        arr = new int16_t[mon.GetSize()]; 
+        for (size_t i = 0; i < mon.GetSize(); i++) {
+            arr[i] = 0;
+        }
+    Monom tmpMonom = Monom(0, mon.GetSize(), arr);
+    tmpPolynom.AppendMonom(tmpMonom);
+    }
+
+    return res / tmpPolynom;
 }

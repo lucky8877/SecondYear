@@ -21,7 +21,7 @@ size_t Monom::GetSize()const{
     return _varcount;
 }
 
-void Monom::print() const{
+void Monom::Print() const{
     if (_coef == 0) {
         std::cout<< 0;
         return;
