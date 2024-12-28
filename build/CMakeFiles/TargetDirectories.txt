@@ -1,3 +1,0 @@
-/home/s23380344@unn.global/SecondYear/build/CMakeFiles/main.dir
-/home/s23380344@unn.global/SecondYear/build/CMakeFiles/edit_cache.dir
-/home/s23380344@unn.global/SecondYear/build/CMakeFiles/rebuild_cache.dir
